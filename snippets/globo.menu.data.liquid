@@ -1,0 +1,14 @@
+{%- assign primary_locale = 'null' -%}
+{%- for locale in shop.published_locales -%}{%- if locale.primary -%}{%- assign primary_locale = locale.iso_code | json -%}{%- endif -%}{%- endfor -%}
+<script type="text/javascript">
+  window.GloboMenuConfig = window.GloboMenuConfig || {}
+  window.GloboMenuConfig.hasCarousel = {% if items contains 'carousel' %}true{% else %}false{% endif %};
+  window.GloboMenuConfig.products = window.GloboMenuConfig.products || {};
+  window.GloboMenuConfig.collections = window.GloboMenuConfig.collections || {};
+  window.GloboMenuConfig.pages = window.GloboMenuConfig.pages || {};
+  window.GloboMenuConfig.curLocale = {{request.locale.iso_code | json}};
+  window.GloboMenuConfig.GloboMenuLocale = {{request.locale.iso_code | json}};
+  window.GloboMenuConfig.locale = {{primary_locale}};
+  window.GloboMenuConfig.isMultiCurrency  = true;
+  window.GloboMenuConfig.GloboMenuMissingProducts = [];
+  window.GloboMenuConfig.collections['all-engagement-rings'] = {handle:{{-collections['all-engagement-rings'].handle | json-}},title:{{-collections['all-engagement-rings'].title | json-}}};window.GloboMenuConfig.pages['one-year-manufacturing-warranty'] = {handle:{{-pages['one-year-manufacturing-warranty'].handle | json-}},title:{{-pages['one-year-manufacturing-warranty'].title | json-}}};window.GloboMenuConfig.pages['diamond-foundry'] = {handle:{{-pages['diamond-foundry'].handle | json-}},title:{{-pages['diamond-foundry'].title | json-}}};window.GloboMenuConfig.pages['contact-us-1'] = {handle:{{-pages['contact-us-1'].handle | json-}},title:{{-pages['contact-us-1'].title | json-}}};</script>
